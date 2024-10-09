@@ -1,6 +1,6 @@
 import { Add, ThreeDotMenu, UrgentPriority } from "../utils/Svgs";
 
-const Status = ({ status, imgSvg }) => {
+const Status = ({ status, imgSvg, count }) => {
   return (
     <>
       <div
@@ -16,7 +16,7 @@ const Status = ({ status, imgSvg }) => {
         <div style={{ display: "flex", gap: "0.7rem" }}>
           <img src={imgSvg} alt="" />
           <span style={{ fontWeight: "bolder" }}>{status}</span>
-          <span>3</span>
+          <span>{count}</span>
         </div>
         <div style={{ display: "flex", gap: "0.7rem" }}>
           <img src={Add} alt="" />

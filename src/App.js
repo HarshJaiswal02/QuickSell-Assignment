@@ -4,21 +4,52 @@ import Status from "./Components/Status";
 import "./App.css";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
+  const [statusCounts, setStatusCounts] = useState({
+    todo: 0,
+    inprogress: 0,
+    backlog: 0,
+    done: 0,
+    cancelled: 0,
+  });
+
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(
-        "https://api.quicksell.co/v1/internal/frontend-assignment"
-      );
+      try {
+        const res = await fetch(
+          "https://api.quicksell.co/v1/internal/frontend-assignment"
+        );
+        const data = await res.json();
+        const { tickets } = data;
 
-      const data = await res.json();
-      console.log(data);
-      const { tickets, users } = data;
-      console.log(tickets);
-      console.log(users);
+        const counts = {
+          todo: 0,
+          inprogress: 0,
+          backlog: 0,
+          done: 0,
+          cancelled: 0,
+        };
+
+        tickets.forEach((ticket) => {
+          const normalizedStatus =
+            ticket.status === "In progress"
+              ? "inprogress"
+              : ticket.status.toLowerCase();
+
+          if (counts.hasOwnProperty(normalizedStatus)) {
+            counts[normalizedStatus]++;
+          }
+        });
+
+        setStatusCounts(counts);
+        console.log("Ticket counts:", counts);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
+
     getData();
 
     return () => {
@@ -30,7 +61,7 @@ const App = () => {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home statusCounts={statusCounts} />} />
           <Route path="/priority" element={<Status />} />
           <Route path="/names" element={<Status />} />
           <Route path="/sort/priority" element={<Status />} />
