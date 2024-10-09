@@ -1,11 +1,10 @@
 import React from "react";
 import Status from "../Components/Status";
 import Card from "../Components/Card";
-import { Backlog, Cancelled, Done, InProgress, Todo } from "../utils/Svgs";
+import { Backlog } from "../utils/Svgs";
 
 const Users = ({ userTicketMap, usersCount }) => {
   console.log(usersCount);
-  const arrayOfUsers = Array(usersCount).fill(null);
   console.log(userTicketMap);
 
   return (
