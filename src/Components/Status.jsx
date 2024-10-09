@@ -1,6 +1,6 @@
 import { Add, ThreeDotMenu } from "../utils/Svgs";
 
-const Status = ({ status, imgSvg, count }) => {
+const Status = ({ status, imgSvg, count, user }) => {
   console.log(count);
   return (
     <>
@@ -15,7 +15,16 @@ const Status = ({ status, imgSvg, count }) => {
         }}
       >
         <div style={{ display: "flex", gap: "0.7rem" }}>
-          <img src={imgSvg} alt="" />
+          {user === "user" ? (
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+              style={{ width: "30px", height: "30px" }}
+              className="card-cam-avatar"
+              alt=""
+            />
+          ) : (
+            <img src={imgSvg} alt="" />
+          )}
           <span style={{ fontWeight: "bolder" }}>{status}</span>
           <span>{count}</span>
         </div>

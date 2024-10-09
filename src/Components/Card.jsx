@@ -28,12 +28,16 @@ const Card = ({ data }) => {
           </div>
         </div>
         <div className="card-right">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-            style={{ width: "30px", height: "30px" }}
-            className="card-cam-avatar"
-            alt=""
-          />
+          {data.user === "user" ? (
+            <>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+                style={{ width: "30px", height: "30px" }}
+                className="card-cam-avatar"
+                alt=""
+              />
+            </>
+          ) : null}
         </div>
       </div>
     </>
