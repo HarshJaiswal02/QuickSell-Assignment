@@ -15,6 +15,14 @@ const App = () => {
     cancelled: 0,
   });
 
+  const [groupedTickets, setGroupedTickets] = useState({
+    todo: [],
+    inprogress: [],
+    backlog: [],
+    done: [],
+    cancelled: [],
+  });
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -32,6 +40,14 @@ const App = () => {
           cancelled: 0,
         };
 
+        const grouped = {
+          todo: [],
+          inprogress: [],
+          backlog: [],
+          done: [],
+          cancelled: [],
+        };
+
         tickets.forEach((ticket) => {
           const normalizedStatus =
             ticket.status === "In progress"
@@ -40,11 +56,15 @@ const App = () => {
 
           if (counts.hasOwnProperty(normalizedStatus)) {
             counts[normalizedStatus]++;
+            grouped[normalizedStatus].push(ticket);
           }
         });
 
         setStatusCounts(counts);
+        setGroupedTickets(grouped);
+
         console.log("Ticket counts:", counts);
+        console.log("Grouped tickets:", grouped);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -61,7 +81,15 @@ const App = () => {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home statusCounts={statusCounts} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                statusCounts={statusCounts}
+                groupedTickets={groupedTickets}
+              />
+            }
+          />
           <Route path="/priority" element={<Status />} />
           <Route path="/names" element={<Status />} />
           <Route path="/sort/priority" element={<Status />} />

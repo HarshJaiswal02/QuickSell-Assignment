@@ -1,6 +1,7 @@
 import { Add, ThreeDotMenu, UrgentPriority } from "../utils/Svgs";
 
-const Status = ({ status, imgSvg, count }) => {
+const Status = ({ status, imgSvg, count, data }) => {
+  console.log(count);
   return (
     <>
       <div

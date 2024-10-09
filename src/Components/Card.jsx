@@ -1,22 +1,23 @@
 import "./Card.css";
 import ThreeDotMenu from "../assets/icons_FEtask/Img - High Priority.svg";
-const Card = () => {
+const Card = ({ data }) => {
+  console.log(data);
+
   return (
     <>
       <div className="card">
         <div className="card-left">
           <div className="card-title">
-            <h3 className="card-cam">CAM-5</h3>
+            <h3 className="card-cam">{data?.id}</h3>
           </div>
           <div className="card-top">
             <p className="card-description">
               <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
               {/* {" Status"} */}
-              Add Multi-Language Support - Enable multi-language Support within
-              ...
+              {data?.title}
             </p>
           </div>
-          <div style={{ display: "flex", gap: "0.5rem"  }}>
+          <div style={{ display: "flex", gap: "0.5rem" }}>
             <div className="card-network-icon">
               <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
             </div>
