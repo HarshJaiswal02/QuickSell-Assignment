@@ -1,4 +1,3 @@
-import Card from "./Components/Card";
 import Navbar from "./Components/Navbar";
 import Status from "./Components/Status";
 import "./App.css";
@@ -6,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import Priority from "./pages/Priority";
+import Users from "./pages/Users";
 
 const App = () => {
   const [statusCounts, setStatusCounts] = useState({
@@ -40,6 +40,9 @@ const App = () => {
     noPriority: [],
   });
 
+  const [mergedTickets, setMergedTickets] = useState([]);
+  const [userTicketMap, setUserTicketMap] = useState({});
+  const [usersCount, setUsersCount] = useState(0);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -47,7 +50,7 @@ const App = () => {
           "https://api.quicksell.co/v1/internal/frontend-assignment"
         );
         const data = await res.json();
-        const { tickets } = data;
+        const { tickets, users } = data;
 
         const counts = {
           todo: 0,
@@ -110,15 +113,44 @@ const App = () => {
           }
         });
 
+        const populatedTickets = tickets.map((ticket) => {
+          const user = users.find((user) => user.id === ticket.userId);
+          return {
+            ...ticket,
+            user: user
+              ? { id: user.id, name: user.name, available: user.available }
+              : null,
+          };
+        });
+
+        const userMap = {};
+
+        populatedTickets.forEach((ticket) => {
+          const userId = ticket.userId;
+
+          if (!userMap[userId]) {
+            userMap[userId] = [];
+          }
+          userMap[userId].push(ticket);
+        });
+
         setStatusCounts(counts);
         setGroupedTickets(grouped);
+
         setPriorityCounts(priorityCounts);
         setGroupedTicketsByPriority(groupedPriority);
+
+        setMergedTickets(populatedTickets);
+        setUserTicketMap(userMap);
+        console.log("Count users: ", Object.keys(userMap).length);
+        setUsersCount(Object.keys(userMap).length);
 
         console.log("Ticket counts:", counts);
         console.log("Grouped tickets:", grouped);
         console.log("Priority counts:", priorityCounts);
         console.log("Grouped tickets by priority:", groupedPriority);
+        console.log("Populated tickets with user info:", populatedTickets);
+        console.log("User -> Tickets map:", userMap);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -153,7 +185,12 @@ const App = () => {
               />
             }
           />
-          <Route path="/names" element={<Status />} />
+          <Route
+            path="/names"
+            element={
+              <Users usersCount={usersCount} userTicketMap={userTicketMap} />
+            }
+          />
           <Route path="/sort/priority" element={<Status />} />
           <Route path="/sort/title" element={<Status />} />
         </Routes>

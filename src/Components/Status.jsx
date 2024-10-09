@@ -1,6 +1,6 @@
-import { Add, ThreeDotMenu, UrgentPriority } from "../utils/Svgs";
+import { Add, ThreeDotMenu } from "../utils/Svgs";
 
-const Status = ({ status, imgSvg, count, data }) => {
+const Status = ({ status, imgSvg, count }) => {
   console.log(count);
   return (
     <>

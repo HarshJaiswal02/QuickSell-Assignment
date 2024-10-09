@@ -25,7 +25,7 @@ const Priority = ({ priorityCounts, groupedTicketsByPriority }) => {
     <>
       <div className="grid-5" style={{ margin: "0 5rem" }}>
         <div>
-          <Status status="No Priority" imgSvg={NoPriority} count={urgent} />
+          <Status status="No Priority" imgSvg={NoPriority} count={noPriority} />
           {noPriorityList.map((data) => (
             <Card key={data.id} data={data} />
           ))}
