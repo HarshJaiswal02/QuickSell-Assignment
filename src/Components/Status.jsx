@@ -1,7 +1,6 @@
-import Add from "../assets/icons_FEtask/add.svg";
-import ThreeDotMenu from "../assets/icons_FEtask/3 dot menu.svg";
-import Backlog from "../assets/icons_FEtask/Backlog.svg";
-const Status = () => {
+import { Add, ThreeDotMenu, UrgentPriority } from "../utils/Svgs";
+
+const Status = ({ status, imgSvg }) => {
   return (
     <>
       <div
@@ -15,8 +14,8 @@ const Status = () => {
         }}
       >
         <div style={{ display: "flex", gap: "0.7rem" }}>
-          <img src={Backlog} alt="" />
-          <span style={{ fontWeight: "bolder" }}> Todo</span>
+          <img src={imgSvg} alt="" />
+          <span style={{ fontWeight: "bolder" }}>{status}</span>
           <span>3</span>
         </div>
         <div style={{ display: "flex", gap: "0.7rem" }}>
