@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import Card from "./Components/Card";
+import Navbar from "./Components/Navbar";
+import Status from "./Components/Status";
+import "./App.css";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="grid-5" style={{ margin: "0 5rem" }}>
+        <div>
+          <Status />
+          <Card />
+          <Card />
+        </div>
+        <div>
+          <Status />
+          <Card />
+        </div>
+        <div>
+          <Status />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+        <div>
+          <Status />
+          <Card />
+        </div>
+        <div>
+          <Status />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
