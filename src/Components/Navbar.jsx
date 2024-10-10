@@ -95,10 +95,11 @@ const Navbar = () => {
                   id="grouping"
                   value={groupingValue}
                   onChange={handleGroupingChange}
+                  style={{ fontSize: "0.9rem" }}
                 >
                   <option value="status">Status</option>
                   <option value="priority">Priority</option>
-                  <option value="users">Users</option>
+                  <option value="users">User</option>
                 </select>
               </div>
               <div style={{ marginTop: "1rem" }}>
@@ -108,6 +109,7 @@ const Navbar = () => {
                   id="sorting"
                   value={sortingValue}
                   onChange={handleSortingChange}
+                  style={{ fontSize: "0.9rem" }}
                 >
                   <option value="priority">Priority</option>
                   <option value="title">Title</option>

@@ -10,7 +10,7 @@ const Status = ({ status, imgSvg, count, user }) => {
           justifyContent: "space-between",
           padding: "0 0.5rem",
           margin: "1rem",
-          maxWidth: "19rem",
+          maxWidth: "21.5rem",
           width: "100%",
         }}
       >
