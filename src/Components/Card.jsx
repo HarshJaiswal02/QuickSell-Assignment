@@ -23,12 +23,16 @@ const Card = ({ data, userName, status }) => {
               {data?.title}
             </p>
           </div>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.01rem" }}>
             <div className="card-network-icon">
-              <img src={LowPriority} alt="Menu icon" className="menu-icon" />
+              <img
+                src={LowPriority}
+                alt="Menu icon"
+                style={{ width: "0.7rem" }}
+              />
             </div>
             <div className="feature-request">
-              <img src={Dot} alt="Menu icon" className="menu-icon" />
+              <img src={Dot} alt="Menu icon" style={{ width: "0.7rem" }} />
               Feature Request
             </div>
           </div>
@@ -38,7 +42,7 @@ const Card = ({ data, userName, status }) => {
             <>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                style={{ width: "30px", height: "30px" }}
+                style={{ width: "2.1rem", height: "2.1rem" }}
                 className="card-cam-avatar"
                 alt=""
               />

@@ -14,18 +14,20 @@ const Status = ({ status, imgSvg, count, user }) => {
           width: "100%",
         }}
       >
-        <div style={{ display: "flex", gap: "0.7rem" }}>
+        <div style={{ display: "flex", gap: "0.7rem", alignItems: "center" }}>
           {user === "user" ? (
             <img
               src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-              style={{ width: "30px", height: "30px" }}
+              style={{ width: "2.1rem", height: "2.1rem" }}
               className="card-cam-avatar"
               alt=""
             />
           ) : (
             <img src={imgSvg} alt="" />
           )}
-          <span style={{ fontWeight: "bolder" }}>{status}</span>
+          <div style={{ fontWeight: "normal", fontSize: "1.1rem" }}>
+            {status}
+          </div>
           <span>{count}</span>
         </div>
         <div style={{ display: "flex", gap: "0.7rem" }}>
