@@ -1,7 +1,7 @@
 import "./Card.css";
 import ThreeDotMenu from "../assets/icons_FEtask/Img - High Priority.svg";
-const Card = ({ data }) => {
-  console.log(data);
+const Card = ({ data, userName, status }) => {
+  console.log("data", data);
 
   return (
     <>
@@ -12,7 +12,10 @@ const Card = ({ data }) => {
           </div>
           <div className="card-top">
             <p className="card-description">
-              <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
+              {status === "status" ? (
+                <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
+              ) : null}
+
               {/* {" Status"} */}
               {data?.title}
             </p>
@@ -28,7 +31,7 @@ const Card = ({ data }) => {
           </div>
         </div>
         <div className="card-right">
-          {data.user === "user" ? (
+          {userName !== "userName" ? (
             <>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"

@@ -43,6 +43,7 @@ const App = () => {
   const [mergedTickets, setMergedTickets] = useState([]);
   const [userTicketMap, setUserTicketMap] = useState({});
   const [usersCount, setUsersCount] = useState(0);
+  const [userDetailsMap, setUserDetailsMap] = useState({});
   useEffect(() => {
     const getData = async () => {
       try {
@@ -124,9 +125,15 @@ const App = () => {
         });
 
         const userMap = {};
+        const userDetails = {};
 
         populatedTickets.forEach((ticket) => {
           const userId = ticket.userId;
+          const user = users.find((user) => user.id === ticket.userId);
+
+          if (user) {
+            userDetails[user.id] = { id: user.id, name: user.name }; // Corrected scope
+          }
 
           if (!userMap[userId]) {
             userMap[userId] = [];
@@ -144,6 +151,7 @@ const App = () => {
         setUserTicketMap(userMap);
         console.log("Count users: ", Object.keys(userMap).length);
         setUsersCount(Object.keys(userMap).length);
+        setUserDetailsMap(userDetails); // Set user details state
 
         console.log("Ticket counts:", counts);
         console.log("Grouped tickets:", grouped);
@@ -151,6 +159,8 @@ const App = () => {
         console.log("Grouped tickets by priority:", groupedPriority);
         console.log("Populated tickets with user info:", populatedTickets);
         console.log("User -> Tickets map:", userMap);
+
+        console.log("user-detail", userDetails);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -164,8 +174,8 @@ const App = () => {
   }, [priorityCounts]);
   return (
     <>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route
             path="/"
@@ -188,7 +198,11 @@ const App = () => {
           <Route
             path="/names"
             element={
-              <Users usersCount={usersCount} userTicketMap={userTicketMap} />
+              <Users
+                usersCount={usersCount}
+                userTicketMap={userTicketMap}
+                userDetailsMap={userDetailsMap}
+              />
             }
           />
           <Route path="/sort/priority" element={<Status />} />

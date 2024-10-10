@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ThreeDotMenu from "../assets/icons_FEtask/down.svg";
 import Display from "../assets/icons_FEtask/Display.svg";
+import { useNavigate } from "react-router-dom";
 
 const navbarStyle = {
   background: "whitesmoke",
@@ -19,17 +20,27 @@ const navbarItemsStyle = {
 };
 
 const Navbar = () => {
-  const [groupingValue, setGroupingValue] = useState("status"); 
+  const navigate = useNavigate();
+  const [groupingValue, setGroupingValue] = useState("status");
   const [sortingValue, setSortingValue] = useState("priority"); // Default value
 
   const handleGroupingChange = (event) => {
-    setGroupingValue(event.target.value);
-    console.log("Selected grouping:", event.target.value);
+    const selectedValue = event.target.value;
+    setGroupingValue(selectedValue);
+    console.log("Selected grouping:", selectedValue);
+    if (selectedValue === "status") {
+      navigate("/");
+    } else if (selectedValue === "priority") {
+      navigate("/priority");
+    } else if (selectedValue === "users") {
+      navigate("/names");
+    }
   };
 
   const handleSortingChange = (event) => {
-    setSortingValue(event.target.value);
-    console.log("Selected sorting:", event.target.value);
+    const selectedValue = event.target.value;
+    setSortingValue(selectedValue);
+    console.log("Selected sorting:", selectedValue);
   };
 
   return (

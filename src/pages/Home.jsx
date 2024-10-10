@@ -21,31 +21,31 @@ const Home = ({ statusCounts, groupedTickets }) => {
         <div>
           <Status status="Backlog" imgSvg={Backlog} count={backlog} />
           {backlogList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status="status" />
           ))}
         </div>
         <div>
           <Status status="Todo" imgSvg={Todo} count={todo} />
           {todoList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status="status"/>
           ))}
         </div>
         <div>
           <Status status="In Progress" imgSvg={InProgress} count={inprogress} />
           {inprogressList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status="status"/>
           ))}
         </div>
         <div>
           <Status status="Done" imgSvg={Done} count={done} />
           {doneList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status="status" />
           ))}
         </div>
         <div>
           <Status status="Cancelled" imgSvg={Cancelled} count={cancelled} />
           {cancelledList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status="status"/>
           ))}
         </div>
       </div>
