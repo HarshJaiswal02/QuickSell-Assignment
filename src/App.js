@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import Priority from "./pages/Priority";
 import Users from "./pages/Users";
+import PrioritySort from "./pages/PrioritySort";
 
 const App = () => {
   const [statusCounts, setStatusCounts] = useState({
@@ -205,7 +206,15 @@ const App = () => {
               />
             }
           />
-          <Route path="/sort/priority" element={<Status />} />
+          <Route
+            path="/sort/priority"
+            element={
+              <PrioritySort
+                priorityCounts={priorityCounts}
+                groupedTicketsByPriority={groupedTicketsByPriority}
+              />
+            }
+          />
           <Route path="/sort/title" element={<Status />} />
         </Routes>
       </BrowserRouter>
