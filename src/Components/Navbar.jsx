@@ -63,6 +63,10 @@ const Navbar = () => {
     if (selectedValue === "priority") {
       navigate("/sort/priority");
     }
+
+    if (selectedValue === "title") {
+      navigate("/sort/title");
+    }
     setIsPopupVisible(false);
   };
 

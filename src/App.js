@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Priority from "./pages/Priority";
 import Users from "./pages/Users";
 import PrioritySort from "./pages/PrioritySort";
+import TitleSort from "./pages/TitleSort";
 
 const App = () => {
   const [statusCounts, setStatusCounts] = useState({
@@ -45,6 +46,8 @@ const App = () => {
   const [userTicketMap, setUserTicketMap] = useState({});
   const [usersCount, setUsersCount] = useState(0);
   const [userDetailsMap, setUserDetailsMap] = useState({});
+
+  const [sortTitle, setSortTitle] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -161,12 +164,16 @@ const App = () => {
         console.log("Populated tickets with user info:", populatedTickets);
         console.log("User -> Tickets map:", userMap);
 
+        const sorted = tickets.sort((a, b) => a.title.localeCompare(b.title));
+        setSortTitle(sorted);
+        console.log(sorted); // but here it shows it has 10 objects
+        // here it coming empty
+
         console.log("user-detail", userDetails);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     getData();
 
     return () => {
@@ -215,7 +222,12 @@ const App = () => {
               />
             }
           />
-          <Route path="/sort/title" element={<Status />} />
+          <Route
+            path="/sort/title"
+            element={
+              <TitleSort statusCounts={statusCounts} sortTitle={sortTitle} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
