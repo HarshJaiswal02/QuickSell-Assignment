@@ -1,61 +1,74 @@
+import React, { useState } from "react";
 import ThreeDotMenu from "../assets/icons_FEtask/down.svg";
 import Display from "../assets/icons_FEtask/Display.svg";
-import { useState } from "react";
+
 const navbarStyle = {
   background: "whitesmoke",
   padding: "0.5rem",
   paddingLeft: "7rem",
+  display: "flex",
+  alignItems: "center",
 };
 
 const navbarItemsStyle = {
   display: "flex",
   alignItems: "center",
-  // justifyContent: 'center', // Uncomment if needed
-  padding: "0 0.3rem",
   gap: "0.5rem",
-  border: "1px solid b",
   color: "black",
+  position: "relative",
 };
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const [groupingValue, setGroupingValue] = useState("status"); 
+  const [sortingValue, setSortingValue] = useState("priority"); // Default value
+
+  const handleGroupingChange = (event) => {
+    setGroupingValue(event.target.value);
+    console.log("Selected grouping:", event.target.value);
+  };
+
+  const handleSortingChange = (event) => {
+    setSortingValue(event.target.value);
+    console.log("Selected sorting:", event.target.value);
   };
 
   return (
-    <>
-      <div className="navbar" style={navbarStyle}>
-        <button
-          onClick={toggleDropdown}
-          style={{
-            background: "whitesmoke",
-            border: "none",
-            padding: "0",
-            margin: "0",
-            outline: "none",
-            boxShadow: "none",
-          }}
-        >
-          <div className="navbar-items" style={navbarItemsStyle}>
-            <div>
-              <img src={Display} alt="" />
-            </div>
-            <div>Display</div>
-            <div>
-              <img src={ThreeDotMenu} alt="" />
-            </div>
-            {isOpen && (
-              <ul className="dropdown-menu">
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
-            )}
+    <div className="navbar" style={navbarStyle}>
+      <div className="navbar-items" style={navbarItemsStyle}>
+        <div>
+          <img src={Display} alt="Display Icon" />
+        </div>
+        <div>Display</div>
+        <div>
+          <img
+            src={ThreeDotMenu}
+            alt="Dropdown Menu"
+            style={{ cursor: "pointer" }}
+          />
+          <div>
+            <select
+              name="grouping"
+              id="grouping"
+              value={groupingValue}
+              onChange={handleGroupingChange}
+            >
+              <option value="status">Status</option>
+              <option value="priority">Priority</option>
+              <option value="users">Users</option>
+            </select>
+            <select
+              name="sorting"
+              id="sorting"
+              value={sortingValue}
+              onChange={handleSortingChange}
+            >
+              <option value="priority">Priority</option>
+              <option value="title">Title</option>
+            </select>
           </div>
-        </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

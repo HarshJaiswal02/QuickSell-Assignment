@@ -9,7 +9,7 @@ const Users = ({ userTicketMap, usersCount }) => {
 
   return (
     <>
-      <div className={`grid-${usersCount}`} style={{ margin: "0 5rem" }}>
+      <div className={`grid-5`} style={{ margin: "0 5rem" }}>
         {Object.entries(userTicketMap).map(([userId, tickets], index) => (
           <div key={index}>
             <Status
