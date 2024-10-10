@@ -11,7 +11,7 @@ import MediumPriority from "../assets/icons_FEtask/Img - Medium Priority.svg";
 import NoPriority from "../assets/icons_FEtask/No-priority.svg";
 import UrgentPriorityColor from "../assets/icons_FEtask/SVG - Urgent Priority colour.svg";
 import UrgentPriority from "../assets/icons_FEtask/SVG - Urgent Priority grey.svg";
-
+import Dot from "../assets/icons_FEtask/dot.svg";
 export {
   Add,
   ThreeDotMenu,
@@ -26,4 +26,5 @@ export {
   NoPriority,
   UrgentPriorityColor,
   UrgentPriority,
+  Dot,
 };

@@ -20,7 +20,7 @@ const Users = ({ userTicketMap, usersCount, userDetailsMap }) => {
               user="user"
             />
             {tickets.map((ticket) => (
-              <Card key={ticket.id} data={ticket} userName="userName" />
+              <Card key={ticket.id} data={ticket} status={true} />
             ))}
           </div>
         ))}

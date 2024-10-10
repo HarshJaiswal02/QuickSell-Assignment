@@ -27,31 +27,31 @@ const Priority = ({ priorityCounts, groupedTicketsByPriority }) => {
         <div>
           <Status status="No Priority" imgSvg={NoPriority} count={noPriority} />
           {noPriorityList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status={true} />
           ))}
         </div>
         <div>
           <Status status="Urgent" imgSvg={UrgentPriorityColor} count={urgent} />
           {urgentList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status={true} />
           ))}
         </div>
         <div>
           <Status status="High" imgSvg={HighPriority} count={high} />
           {highList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status={true} />
           ))}
         </div>
         <div>
           <Status status="Medium" imgSvg={MediumPriority} count={medium} />
           {mediumList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status={true} />
           ))}
         </div>
         <div>
           <Status status="Low" imgSvg={LowPriority} count={low} />
           {lowList.map((data) => (
-            <Card key={data.id} data={data} />
+            <Card key={data.id} data={data} status={true} />
           ))}
         </div>
       </div>

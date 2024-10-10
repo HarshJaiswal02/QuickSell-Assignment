@@ -1,7 +1,11 @@
 import "./Card.css";
 import ThreeDotMenu from "../assets/icons_FEtask/Img - High Priority.svg";
+import { getStatus } from "../utils/status";
+import { Dot, InProgress, LowPriority } from "../utils/Svgs";
 const Card = ({ data, userName, status }) => {
   console.log("data", data);
+
+  console.log("status", status);
 
   return (
     <>
@@ -12,26 +16,25 @@ const Card = ({ data, userName, status }) => {
           </div>
           <div className="card-top">
             <p className="card-description">
-              {status === "status" ? (
-                <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
-              ) : null}
-
+              {status && (
+                <img src={getStatus()} alt="Menu icon" className="menu-icon" />
+              )}{" "}
               {/* {" Status"} */}
               {data?.title}
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <div className="card-network-icon">
-              <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
+              <img src={LowPriority} alt="Menu icon" className="menu-icon" />
             </div>
             <div className="feature-request">
-              <img src={ThreeDotMenu} alt="Menu icon" className="menu-icon" />
+              <img src={Dot} alt="Menu icon" className="menu-icon" />
               Feature Request
             </div>
           </div>
         </div>
         <div className="card-right">
-          {userName !== "userName" ? (
+          {!status && (
             <>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
@@ -40,7 +43,7 @@ const Card = ({ data, userName, status }) => {
                 alt=""
               />
             </>
-          ) : null}
+          )}
         </div>
       </div>
     </>
